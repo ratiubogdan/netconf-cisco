@@ -37,13 +37,12 @@ def demo(host, user, passw):
                        '''
     rec = m.get(('subtree', request)).data_xml
     print(rec)
-    print("acuma afisez xml daca pot")
     root = ET.fromstring(rec)
-    print("incerc sa afisez elementele")
-    print ("root=", root, "tag=", root.tag, "Attrib=", root.attrib)
 
-    host = root.find('.//{http://www.cisco.com/nxos:1.0:sysmgrcli}host_name')
-    print("am hostname=", host.text)
+    host = root.find('.//{http://www.cisco.com/nxos:1.0:sysmgrcli}chassis_id')
+    product_name = host.text.split()[0]
+    product_model = host.text.split()[1]
+    print("am product_name=", product_name, "si product_model=", product_model)
 
 
     m.close_session()
